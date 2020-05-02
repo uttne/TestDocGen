@@ -1,4 +1,5 @@
 ﻿using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace TestDocGen
 {
@@ -6,7 +7,7 @@ namespace TestDocGen
     {
         public static string ToYaml(this TestDocument self)
         {
-            var serializer = new SerializerBuilder().Build();
+            var serializer = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
 
             return serializer.Serialize(self);
         }

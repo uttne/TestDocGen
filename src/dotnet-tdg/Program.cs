@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using ArgsToClass;
 
 namespace dotnet_tdg
 {
@@ -6,7 +8,20 @@ namespace dotnet_tdg
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var parser = new ArgsParser<MainCommand>();
+
+            IArgsData<MainCommand> data;
+            try
+            {
+                data = parser.Parse(args);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+            data.RunCommand();
         }
     }
 }

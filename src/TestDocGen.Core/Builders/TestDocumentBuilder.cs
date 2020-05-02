@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TestDocGen.Builders
 {
-    public class DocumentBuilder
+    public class TestDocumentBuilder
     {
         public string Description { get; set; }
         public Guid? Id { get; set; }
@@ -13,7 +13,7 @@ namespace TestDocGen.Builders
         public string Title { get; set; }
         public string Version { get; set; }
         public IStepNoGen StepNoGen { get; set; }
-        public DocumentBuilder AddTestItem(AddTestItemHandler handler)
+        public TestDocumentBuilder AddTestItem(AddTestItemHandler handler)
         {
             var test = new TestItemBuilder(this)
             {
@@ -26,7 +26,7 @@ namespace TestDocGen.Builders
             return this;
         }
 
-        public TestDocument CreateDocument()
+        public TestDocument Build()
         {
             return new TestDocument()
             {
@@ -35,34 +35,34 @@ namespace TestDocGen.Builders
                 SubTitle = SubTitle,
                 Version = Version,
                 Description = Description,
-                Tests = Tests.Select(x => x.CreateTest()).ToList()
+                Tests = Tests.Select(x => x.Build()).ToList()
             };
         }
 
-        public DocumentBuilder SetDescription(string description)
+        public TestDocumentBuilder SetDescription(string description)
         {
             Description = description;
             return this;
         }
 
-        public DocumentBuilder SetId(Guid id)
+        public TestDocumentBuilder SetId(Guid id)
         {
             Id = id;
             return this;
         }
 
-        public DocumentBuilder SetSubTitle(string subTitle)
+        public TestDocumentBuilder SetSubTitle(string subTitle)
         {
             SubTitle = subTitle;
             return this;
         }
 
-        public DocumentBuilder SetTitle(string title)
+        public TestDocumentBuilder SetTitle(string title)
         {
             Title = title;
             return this;
         }
-        public DocumentBuilder SetVersion(string version)
+        public TestDocumentBuilder SetVersion(string version)
         {
             Version = version;
             return this;

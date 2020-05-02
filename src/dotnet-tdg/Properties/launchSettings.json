@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dotnet-tdg": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\TestDocGen.Core.SampleLib\\bin\\Release\\netstandard2.0\\TestDocGen.Core.SampleLib.dll"
+    }
+  }
+}

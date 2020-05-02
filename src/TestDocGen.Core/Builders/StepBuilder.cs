@@ -31,7 +31,7 @@ namespace TestDocGen.Builders
             return this;
         }
 
-        public Step CreateStep(Step prevStep = null, IStepNoGen stepNoGen = null)
+        public Step Build(Step prevStep = null, IStepNoGen stepNoGen = null)
         {
             var gen = stepNoGen ?? new NumericalStepNoGen();
 

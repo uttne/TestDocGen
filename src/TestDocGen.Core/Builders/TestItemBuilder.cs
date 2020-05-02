@@ -6,15 +6,15 @@ namespace TestDocGen.Builders
 {
     public class TestItemBuilder
     {
-        public TestItemBuilder(DocumentBuilder document)
+        public TestItemBuilder(TestDocumentBuilder testDocument)
         {
-            Document = document;
+            TestDocument = testDocument;
         }
 
         public string Chapter { get; set; }
 
         public string Description { get; set; }
-        public DocumentBuilder Document { get; }
+        public TestDocumentBuilder TestDocument { get; }
         public string Name { get; set; }
         public string Section { get; set; }
         public List<StepBuilder> Steps { get; } = new List<StepBuilder>();
@@ -68,7 +68,7 @@ namespace TestDocGen.Builders
 
         public IStepNoGen StepNoGen { get; set; }
 
-        public TestItem CreateTest()
+        public TestItem Build()
         {
 
             var stepNoGen = StepNoGen;
@@ -81,7 +81,7 @@ namespace TestDocGen.Builders
                 Tags = Tags.ToList(),
                 Steps = Steps.Aggregate(new List<Step>(), (list, x) =>
                 {
-                    list.Add(x.CreateStep(list.LastOrDefault(),stepNoGen));
+                    list.Add(x.Build(list.LastOrDefault(),stepNoGen));
                     return list;
                 }),
             };

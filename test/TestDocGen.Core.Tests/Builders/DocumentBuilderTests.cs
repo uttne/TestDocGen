@@ -20,7 +20,7 @@ namespace TestDocGen.Tests.Builders
         [Fact]
         public void ItCreateDocument()
         {
-            var builder = new DocumentBuilder()
+            var builder = new TestDocumentBuilder()
             {
                 StepNoGen = new NumericalStepNoGen(),
             };
@@ -95,7 +95,7 @@ namespace TestDocGen.Tests.Builders
                 );
 
 
-            var document = builder.CreateDocument();
+            var document = builder.Build();
             
             Assert.Equal(id, document.Id);
             Assert.Equal("Test Title", document.Title);

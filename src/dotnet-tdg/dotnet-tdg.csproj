@@ -12,7 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ArgsToClass" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TestDocGen.Core\TestDocGen.Core.csproj" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet build $(SolutionDir)src\TestDocGen.Core.SampleLib\TestDocGen.Core.SampleLib.csproj -c Release" />
+  </Target>
 
 </Project>
